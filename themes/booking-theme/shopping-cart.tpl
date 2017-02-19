@@ -447,6 +447,31 @@
 					{/foreach}
 				</tbody>
 			{/if}
+
+			<!-- Custom price -->
+			<tbody>
+			<tr class="cart_discount last_item">
+					<td class="cart_discount_name" colspan="3">{l s='Delivery Price' mod='bookingmanagement'}
+					<span class="price-discount">({$delivery_name})</span>
+					</td>
+					<td class="cart_discount_price"  colspan="4">
+						<span class="price-discount">{displayPrice price=$price_delivery}</span>
+					</td>
+				</tr>
+			</tbody>
+			<tbody>
+			<tr class="cart_discount last_item">
+					<td class="cart_discount_name" colspan="3">{l s='Return Price' mod='bookingmanagement'}
+					<span class="price-discount">({$return_name})</span>
+					</td>
+					<td class="cart_discount_price"  colspan="4">
+						<span class="price-discount">{displayPrice price=$price_return}</span>
+						{$ca3}
+					</td>
+				</tr>
+			</tbody>
+			<!-- end Custom price -->
+
 		</table>
 	</div> <!-- end order-detail-content -->
 

@@ -142,7 +142,11 @@ var ajaxCart = {
 		if ($('.cart_block').length) {
 			$(document).off('click', '#add_to_cart button').on('click', '#add_to_cart button', function(e){
 				e.preventDefault();
-				ajaxCart.add($('#product_page_product_id').val(), $('#idCombination').val(), true, null, $('#quantity_wanted').val(), null);
+				var date_from = $('#booking_start_date').val();
+                var date_to = $('#booking_end_date').val();
+                var delivery_center = $('#delivery_center').val();
+                var return_center = $('#return_center').val();
+				ajaxCart.add($('#product_page_product_id').val(), $('#idCombination').val(), true, null, $('#quantity_wanted').val(), null, date_from, date_to, delivery_center, return_center);
 			});
 		}
 
@@ -278,7 +282,7 @@ var ajaxCart = {
 	// close fancybox
 	updateFancyBox : function (){},
 	// add a product in the cart via ajax
-	add : function(idProduct, idCombination, addedFromProductPage, callerElement, quantity, whishlist){
+	add : function(idProduct, idCombination, addedFromProductPage, callerElement, quantity, whishlist, dateFrom, dateTo, deliveryCenter, returnCenter){
 
 		if (addedFromProductPage && !checkCustomizations())
 		{
@@ -325,7 +329,7 @@ var ajaxCart = {
 			async: true,
 			cache: false,
 			dataType : "json",
-			data: 'controller=cart&add=1&ajax=true&qty=' + ((quantity && quantity != null) ? quantity : '1') + '&id_product=' + idProduct + '&token=' + static_token + ( (parseInt(idCombination) && idCombination != null) ? '&ipa=' + parseInt(idCombination): '' + '&id_customization=' + ((typeof customizationId !== 'undefined') ? customizationId : 0)),
+			data: 'controller=cart&add=1&dateFrom=' + dateFrom + '&dateTo=' + dateTo + '&deliveryCenter=' + deliveryCenter + '&returnCenter=' + returnCenter + '&ajax=true&qty=' + ((quantity && quantity != null) ? quantity : '1') + '&id_product=' + idProduct + '&token=' + static_token + ( (parseInt(idCombination) && idCombination != null) ? '&ipa=' + parseInt(idCombination): '' + '&id_customization=' + ((typeof customizationId !== 'undefined') ? customizationId : 0)),
 			success: function(jsonData,textStatus,jqXHR)
 			{
 				// add appliance to whishlist module

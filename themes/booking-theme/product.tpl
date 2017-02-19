@@ -384,6 +384,8 @@
 							</div> <!-- end attributes -->
 						{/if}
 					</div> <!-- end product_attributes -->
+
+					<!-- Extra fields -->
 					<div class="product_attributes clearfix">
 						<label for="" class="control-label">{l s='Start Date' mod='bookingmanagement'}</label>
 					   	<input type="text" class="form-control" name="booking_start_date" id="booking_start_date" autocomplete="off" />
@@ -392,6 +394,19 @@
 						<label for="" class="control-label">{l s='End Date' mod='bookingmanagement'}</label>
 					   	<input type="text" class="form-control" name="booking_end_date" id="booking_end_date" autocomplete="off" />
 					</div>
+					{if isset($car_centers) && $car_centers|@count}
+						<div class="product_attributes clearfix">
+							<label for="" class="control-label">{l s='Delivery Center' mod='bookingmanagement'}</label>
+							{html_options name=delivery_center id=delivery_center options=$car_centers class="form-control"}
+						</div>
+						<div class="product_attributes clearfix">
+							<label for="" class="control-label">{l s='Return Center' mod='bookingmanagement'}</label>
+							{html_options name=return_center id=return_center options=$car_centers class="form-control"}
+						</div>
+					{/if}
+					
+					<!-- end Extra fields -->
+
 					<div class="box-cart-bottom">
 						<div{if (!$allow_oosp && $product->quantity <= 0) || !$product->available_for_order || (isset($restricted_country_mode) && $restricted_country_mode) || $PS_CATALOG_MODE} class="unvisible"{/if}>
 							<p id="add_to_cart" class="buttons_bottom_block no-print">

@@ -1,0 +1,1 @@
+DROP TABLE `PREFIX_cart_booking_data`;
